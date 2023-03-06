@@ -1,0 +1,15 @@
+{
+    "name": "openai_service",
+    "version": "1.0.0",
+    "description": "OpenAI API connection",
+    "author": "Natapone Ch <natapone@gmail.com>",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "openai": "*",
+        "body-parser": "*"
+    }
+}
