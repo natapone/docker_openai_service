@@ -10,6 +10,8 @@
     "dependencies": {
         "express": "^4.17.1",
         "openai": "*",
-        "body-parser": "*"
+        "body-parser": "*",
+        "express-rate-limit": "*",
+        "cors": "*"
     }
 }

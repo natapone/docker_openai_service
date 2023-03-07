@@ -1,4 +1,6 @@
 {
-  "api_key": "11111",
-  "port": 40002
+  "openaiApiKey": "11111",
+  "port": 40002,
+  "cors_origin": ["http://localhost/", "http://localhost:8080",
+                  "http://0.0.0.0/"]
 }

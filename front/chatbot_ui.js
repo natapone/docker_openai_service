@@ -3,9 +3,12 @@
   <button type="submit">Ask OpenAI</button>
 </form>
 
+<div id="openai-response"></div>
+
 <script>
   const openaiForm = document.getElementById('openai-form');
   const openaiQuestion = document.getElementById('openai-question');
+  const openaiResponse = document.getElementById('openai-response');
 
   openaiForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -21,10 +24,8 @@
     })
     .then(response => response.json())
     .then(data => {
-      // Display the answer in a new element
-      const answerElement = document.createElement('div');
-      answerElement.textContent = data.answer;
-      document.body.appendChild(answerElement);
+      console.log("response:", data)
+      openaiResponse.textContent = data.text;
     })
     .catch(error => {
       console.error(error);

@@ -10,3 +10,9 @@ Running on http://localhost:40002/prompt
 $ curl -X POST http://localhost:40002/prompt \
 -H "Content-Type: application/json" \
 -d '{"prompt": "Say hello in Japanese", "max_tokens": 100}'  
+
+
+curl -X POST http://localhost:40002/prompt \
+-H "Content-Type: application/json" \
+-d '{"prompt": "Say hello in Japanese", "max_tokens": 100}' \
+-v

@@ -4,6 +4,8 @@ const express = require('express');
 const config = require('./config.local.json');
 const bodyParser = require('body-parser');
 const { Configuration, OpenAIApi } = require("openai");
+const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 
 
 // Init
@@ -13,9 +15,21 @@ const openaiConfig = new Configuration({
   apiKey: config.openaiApiKey,
 });
 const openaiClient = new OpenAIApi(openaiConfig);
+const limiter = rateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
 
 // Parse request bodies as JSON
 app.use(bodyParser.json());
+app.use(limiter)
+app.use(cors({
+  origin: config.cors_origin
+}));
+
 
 app.post('/prompt', async (req, res) => {
 
@@ -24,7 +38,7 @@ app.post('/prompt', async (req, res) => {
 
   const data = {
     'model': "text-davinci-003",
-    'prompt': promptParams.prompt || 'dddd',
+    'prompt': promptParams.prompt || 'Hello world!',
     'temperature': promptParams.temperature || 0.7,
     'max_tokens': promptParams.max_tokens || 2000,
     'top_p': 1,
