@@ -1,4 +1,4 @@
-# docker_openai_service
+# docker_openai_service_express
 Node backend as a proxy for calling OpenAI API
 
 # -- DEV Local--
